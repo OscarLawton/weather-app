@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../css/styles.css">
-       
         <title>404</title>
+        <link rel="icon" href="/images/weather.png">
+        <link rel="stylesheet" href="../css/styles.css">
+        
     </head>
     <body>
-        {{>header}}
-        <h1>are you for real</h1>
+        <div class="main-content">
+            {{>header}}
+            <p>Use this site to get weather!</p>
+            <img class="portrait" src="images/worm.jpg">
+            <p>{{message}}</p>
+        </div>
         {{>footer}}
     </body>
 </html>

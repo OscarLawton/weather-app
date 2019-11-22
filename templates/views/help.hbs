@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Help</title>
+        <link rel="icon" href="/images/weather.png">
         <link rel="stylesheet" href="css/styles.css">
        
-        <title>Help</title>
     </head>
     <body>
-        <h1>{{>header}}</h1>
-        <img src="/images/worm.jpg">
+       <div class="main-content">
+            {{>header}}
+            <p>Use this site to get weather!</p>
+            <img class="portrait" src="images/worm.jpg">
+        </div>
         <script rel="javascript" src="js/script.js"></script>
         {{>footer}}
     </body>

@@ -1,6 +1,8 @@
 const path = require('path');
 const express = require('express');
 const hbs = require('hbs'); 
+const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
 
 const app = express();
 
@@ -28,7 +30,40 @@ app.get('/help', (req, res) => {
     res.render('help', {title: "Help"});
 });
 
-app.get('/help/asdf/asd/*', (req, res) =>{
+app.get('/weather', (req, res) =>{
+    if(!req.query.address){
+        return res.send({error: "You must enter an address!"});
+    }
+    const location = req.query.address;
+    geocode(location, (err, {latitude, longitude, place_name} = {}) => {
+    
+    
+        if(err){
+          return res.send({err})
+        }
+      
+        forecast(latitude,longitude,(err, forecastData) =>{
+          if(err){
+            return res.send({err});
+          }
+          /* console.log (place_name);
+          console.log('data', forecastData); */
+          res.send({forecast: forecastData, location: place_name, address: req.query.address});
+        });
+    });  
+    
+});
+
+app.get('/products', (req, res) => {
+    if(!req.query.search){
+        return res.send({error: "You must provide a search term"});
+    }
+    console.log(req.query.search);
+    res.send({
+        products: []
+    })
+})
+app.get('/help/*', (req, res) =>{
     res.render("pageNotFound", {title: "404", message: "Help Page Not Found"});
 });
 
