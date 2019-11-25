@@ -5,6 +5,7 @@ const geocode = require('./utils/geocode');
 const forecast = require('./utils/forecast');
 
 const app = express();
+const port = process.env.PORT || 3000 
 
 // Define paths fore Express config
 const publicDirectoryPath = path.join(__dirname, '../public');
@@ -34,10 +35,10 @@ app.get('/weather', (req, res) =>{
     if(!req.query.address){
         return res.send({error: "You must enter an address!"});
     }
-    const location = req.query.address;
-    geocode(location, (err, {latitude, longitude, place_name} = {}) => {
+   
+    geocode(req.query.address, (err, {latitude, longitude, location} = {}) => {
     
-    
+       
         if(err){
           return res.send({err})
         }
@@ -48,7 +49,8 @@ app.get('/weather', (req, res) =>{
           }
           /* console.log (place_name);
           console.log('data', forecastData); */
-          res.send({forecast: forecastData, location: place_name, address: req.query.address});
+          
+          res.send({forecast: forecastData, location, address: req.query.address});
         });
     });  
     
@@ -71,6 +73,7 @@ app.get('/*', (req, res) =>{
     res.render("pageNotFound", {title: "404", message: "Page Not Found"});
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('Its aliiiiiiiive!!!');
+    console.log("running on port: " + port)
 });

@@ -10,9 +10,15 @@
         <div class="main-content">
             {{>header}}
             <p>Use this site to get weather!</p>
-            <img class="portrait" src="images/worm.jpg">
+            
+             <form>
+                <input placeholder="Location">
+                <button>Search</button>
+            </form>
+            <div id="location" class="message"></div>
+            <div id="results" class="message"></div>
         </div>
-        
+       
         
         <script rel="javascript" src="js/script.js"></script>
         {{>footer}}
