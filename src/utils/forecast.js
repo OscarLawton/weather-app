@@ -19,7 +19,7 @@ const forecast = (lat, long, callB) =>{
           console.log(res.body.currently.summary); */
           console.log(data[0])
           c_temp = f_to_c(temperature);
-          callB(undefined, summary + ' It is currently ' + c_temp + '° degress out. There is a ' + precipProbability + '% chance of rain. The maxium temprature is ' + f_to_c(data[1].temperatureMax) + ', the minium temprature ' + f_to_c(data[1].temperatureMin) + '.') 
+          callB(undefined, summary + ' It is currently ' + c_temp + '°C degress out. There is a ' + precipProbability + '% chance of rain. The maxium temprature is ' + f_to_c(data[1].temperatureMax) + '°C, the minium temprature ' + f_to_c(data[1].temperatureMin) + '°C.') 
           //callB(undefined, body.daily.data[0].summary + ' It is currently ' + body.currently.temperature + ' degress out. There is a ' + body.currently.precipProbability + '% chance of rain.')
         }
     })
